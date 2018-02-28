@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "set PORT=3000&&roadhog server",
+    "dev": "webpack-dev-server --inline --hot --watch --progress --config ./build/webpack.dev.config.js",
+    "build": "roadhog build",
+    "lint": "eslint --ext .js src test",
+    "precommit": "npm run lint"
+  },
+  "engines": {
+    "install-node": "6.11.1"
+  },
+  "dependencies": {
+    "antd": "^3.2.0",
+    "babel-runtime": "^6.9.2",
+    "dva": "^2.1.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "rucksack-css": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-dva-hmr": "^0.3.2",
+    "babel-plugin-import": "^1.6.3",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "css-loader": "^0.28.9",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "expect": "^1.20.2",
+    "file-loader": "^1.1.6",
+    "husky": "^0.12.0",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.17",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.1.0",
+    "postcss-nested": "^3.0.0",
+    "redbox-react": "^1.4.3",
+    "roadhog": "^1.2.1",
+    "style-loader": "^0.20.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  }
+}
