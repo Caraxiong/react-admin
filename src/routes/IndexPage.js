@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'dva';
 import { Spin, Modal, Input, message } from 'antd';
+import { classnames, config } from "../utils";
 // import styles from './IndexPage.css';
 import Login from './login';
 import { Layout } from '../components';
 import { Helmet } from 'react-helmet';
 import { styles } from '../components/Layout/index';
-import { withRouter } from './C:/Users/Administrator/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/react-router';
+import { withRouter } from 'dva/router';
 
-const { Header, Bread, Footer, Slider, Styles } = Laypout;
+const { Header, Bread, Footer, Slider, Styles } = Layout;
 let loginPage = '';
 
 const App = ({ children, location, dispatch, app, loading }) => {
@@ -17,7 +18,13 @@ const App = ({ children, location, dispatch, app, loading }) => {
   }
   const {
     login,
-    loginButtonLoading
+    loginButtonLoading,
+    user,
+    siderFold,
+    darkTheme,
+    isNavbar,
+    menuPopoverVisible,
+    navOpenKeys
   } = app;
 
   const loginProps = {
@@ -57,6 +64,41 @@ const App = ({ children, location, dispatch, app, loading }) => {
       });
     }
   };
+  const updatePassword = () => {
+    const passwd = document.getElementById("passwd");
+    dispatch({
+      type: "app/changePassword",
+      payload: {
+        password: passwd.value,
+        name: app.user.name,
+        uid: app.user.uid,
+        callback: data => {
+          if (data && data.success) {
+            message.success("更新成功");
+            passwd.value = "";
+          } else {
+            message.error("更新失败");
+          }
+        }
+      }
+    });
+  };
+  const siderProps = {
+    siderFold,
+    darkTheme,
+    location,
+    navOpenKeys,
+    changeTheme() {
+      dispatch({ type: "app/changeTheme" });
+    },
+    changeOpenKeys(openKeys) {
+      localStorage.setItem("navOpenKeys", JSON.stringify(openKeys));
+      dispatch({
+        type: "app/handleNavOpenKeys",
+        payload: { navOpenKeys: openKeys }
+      });
+    }
+  };
   return (
     <div>
       <Helmet>
@@ -81,8 +123,8 @@ const App = ({ children, location, dispatch, app, loading }) => {
               >
                 <Sider {...siderProps} />
               </aside>
-            ):(
-              ""
+            ) : (
+              ''
             )}
             <div className={styles.main}>
               <Header {...headerProps} />
@@ -125,17 +167,3 @@ App.propTypes = {
 export default withRouter(
   connect(({app,loading}) => ({ app, loading: loading.models.app }))(App)
 );
-
-//old Code
-// function IndexPage() {
-//   return (
-//     <div>
-//         cara
-//     </div>
-//       );
-// }
-
-// IndexPage.propTypes = {
-//       };
-
-// export default connect()(IndexPage);

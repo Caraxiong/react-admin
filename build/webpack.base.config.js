@@ -18,7 +18,6 @@ const postcssBasePlugins = [
 ];
 
 module.exports = {
-
   entry: {
     'index': './src/index.js',
     vendor: ['react', 'react-dom', 'whatwg-fetch'],

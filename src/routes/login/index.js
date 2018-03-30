@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 const login = ({
   loginButtonLoading,
   onOk,
-  form: { getFieldDecorator, validateFieldsAndScroll }
+  form: { getFieldDecorator, validateFieldsAndScroll },
 }) => {
   function handleOk() {
     validateFieldsAndScroll((errors, values) => {
@@ -84,4 +84,4 @@ login.propTypes = {
   loginButtonLoading: PropTypes.bool,
   onOk: PropTypes.func,
 };
-export default FormItem.create()(login);
+export default Form.create()(login);

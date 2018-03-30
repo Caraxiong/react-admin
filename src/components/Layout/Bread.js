@@ -3,7 +3,7 @@ import { Breadcrumb, Icon } from 'antd';
 import styles from './Bread.less';
 import { menu } from '../../utils';
 
-let pathSet = [];
+const pathSet = [];
 const getPathSet = function (menuArray, parentPath) {
   parentPath = parentPath || '/';
   menuArray.forEach(item => {
